@@ -1,0 +1,9 @@
+{
+  "receipt": {
+      "transaction_number": "XXXXXXXX",
+       "payment_method": "VISA ENDING IN 4242",
+       "amount": "12.19",
+       "tip": "2.40",
+      "total": "14.49"
+   }
+}

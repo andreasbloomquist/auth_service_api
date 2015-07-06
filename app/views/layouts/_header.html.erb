@@ -1,0 +1,10 @@
+<nav>
+	<% if logged_in? %>
+		<%= link_to "Account", current_store %>
+		<%= link_to "Logout", logout_path %>
+	<% else %>
+		<%= link_to "Login", login_path %> |
+		<%= link_to "Sign up", new_store_path %>
+	<% end %>
+	
+</nav>

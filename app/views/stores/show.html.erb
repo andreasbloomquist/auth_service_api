@@ -1,0 +1,58 @@
+<div ng-app="AccountApp">
+	<div ng-controller="MainCtrl">
+		{{greeting}}
+		{{current_user.name}}
+
+		<p id="notice"><%= notice %></p>
+
+		<h1><%= @store.name %></h1>
+
+		<p>
+			<strong>Email:</strong>
+			<%= @store.email %>
+		</p>
+
+		<p>
+			<strong>API Key:</strong>
+			<%= @store.api_token.hex_value %>
+			<%= button_to "Update key", update_token_path(@store.id), class: "button" %>
+
+
+		<!-- Edit Store Info Modal -->
+		<a href="#" data-reveal-id="myModal">Edit</a>
+
+		<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  		<h2 id="modalTitle">Edit your store</h2>
+  		<%= render 'form' %>
+  		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+		</div>
+		
+		<div>
+			<button ng-hide="receipts" ng-click="getReceipts()">  Show Receipts </button>
+		</div>
+		<div>
+			<button ng-show="receipts" ng-click="hideReceipts()"> Hide Receipts</button>
+		</div>
+		<div>
+			<button> Add Receipt
+			</button>
+		</div>
+		<div ng-show="receipts">
+			Total Number of Receipts: {{receipts.length}}
+		</div>
+		<div ng-repeat="r in receipts" class="receipt">
+			<strong>Date of service:</strong> {{r.created_at | date}}
+			<br>
+			<strong>Transaction #:</strong> {{r.transaction_number}}
+			<br>
+			<strong>Payment Method:</strong> {{r.payment_method}}
+			<br>
+			<strong>Subtotal:</strong> {{r.subtotal | currency}}
+			<br>
+			<strong>Tip:</strong> {{r.tip | currency}}
+			<br>
+			<strong>Total:</strong> {{r.total | currency}}
+
+		</div>
+	</div>
+</div>
